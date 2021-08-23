@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DadosAluno;
+package Aula04;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author FAMILIA REIS
  */
-@WebServlet(name = "Calcular", urlPatterns = {"/Calcular.html"})
-public class Calcular extends HttpServlet {
+@WebServlet(name = "JurosComposto", urlPatterns = {"/Juros-Composto.html"})
+public class JurosComposto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,13 +37,30 @@ public class Calcular extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Calcular</title>");            
+            out.println("<title>JurosComposto</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h3><a href='pageservlets.html'>Voltar</a></h3>");
-            out.println("<h1>Calculos " + request.getContextPath() + "</h1>");
+            out.println("<h3><a href='index.html'>Home</a></h3>");
             
-            out.println("<input>");
+             double Capital,Taxa, resultado, Meses = 0;
+             double e = 2.718281828459;
+            
+            try{
+                Capital = Double.parseDouble(request.getParameter("Capital"));
+                
+                Taxa = Double.parseDouble(request.getParameter("Taxa"));
+                
+                Meses = Double.parseDouble(request.getParameter("Meses"));
+                resultado =  Capital * Math.pow((1 + Taxa),Meses);
+                
+                out.println("<h4>Juros = "+resultado+"</h4>");
+                
+                
+            }catch (Exception ex){
+            out.println("<p style = 'color: red'>Erro ao ler valor</p>");
+            };
+            
+            out.println("<h1> JurosComposto " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
